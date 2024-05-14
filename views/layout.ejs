@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/c8aec05c09.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/style.css">
 </head>
@@ -19,6 +20,14 @@
 
          <footer>&copy; 2024</footer>
     </div>
-    
+    <script>
+        const hamburgerBtn = document.querySelector('hamburger_btn')
+        const hamburgerBtnIcon = document.querySelector('hamburger_btn i')
+        const dropdownMenu = document.querySelector('.dropdown_menu')
+
+        hamburgerBtn.onclick = function() {
+            dropdownMenu.classList.toggle('open')
+        }
+    </script>
 </body>
 </html>

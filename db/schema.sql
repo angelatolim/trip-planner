@@ -19,18 +19,22 @@ CREATE TABLE trips (
     end_date DATE,
     origin TEXT,
     destination TEXT,
-    user_id INTEGER,
+    user_id INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    type TEXT
 );
 
 CREATE TABLE activities (
     id SERIAL PRIMARY KEY,
     name TEXT,
     date_time TIMESTAMP,
-    location_id INT,
+    location_id TEXT,
     cost TEXT,
     category_id INT,
-    FOREIGN KEY (location_id) REFERENCES locations (id),
     FOREIGN KEY (category_id) REFERENCES categories (id)
 );
 
@@ -41,10 +45,7 @@ CREATE TABLE locations (
     address TEXT
 );
 
-CREATE TABLE categories (
-    id SERIAL PRIMARY KEY,
-    type TEXT
-);
+
 
 -- insert into table
 INSERT INTO trips (title, origin, destination, status) 

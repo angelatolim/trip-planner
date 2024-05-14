@@ -1,0 +1,91 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    height: 100vh;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    color:aqua
+  }
+
+  .navbar {
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+
+  .navbar .logo a {
+    font-size: 1.5rem;
+  }
+
+  .navbar .links {
+    display: flex;
+    gap: 4 rem;
+  }
+
+  .navbar .hamburger_btn {
+    color:black;
+    cursor: pointer;
+    display: none;
+  }
+  
+  action-btn {
+    background-color: blue;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor:pointer;
+    font: 0.8rem;
+  }
+
+  .dropdown_menu {
+    display: none;
+    position: absolute;
+    right: 2 rem;
+    top: 60px;
+    height: 0px;
+    width: 400px;
+    overflow: hidden;
+    transition: height .2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  .dropdown_menu.open {
+    height: 240px;
+  }
+
+  .dropdown_menu li {
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media(max-width: 992px) {
+    .navbar .links, .navbar .create-account-btn {
+        display: none;
+    }
+
+    .navbar .hamburger_btn {
+        display: block;
+    }
+
+    .dropdown_menu {
+        display: block;
+    }
+  }
+
+
+

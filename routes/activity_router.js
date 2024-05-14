@@ -22,19 +22,18 @@ router.post('/activities', (req, res) => {
     })
 })
 
-router.get('/trip/:tripId/activities/:activityId', (req, res) => {
-    const tripId = req.params.tripId
+router.get('/trips/:tripId/activities/:activityId', (req, res) => {
+    const trip = req.params.tripId
     const activityId = req.params.activityId
 
      const sql = `SELECT * FROM activities WHERE id = $1;`
 
-     db(sql, [req.params.activityId], (err, result) => {
+     db.query(sql, [activityId], (err, result) => {
         if(err) console.log(err);
 
-        const activity = result.rows
+        const activity = result.rows[0]
 
-        // not sure what to pass through the route
-        res.render('activities/show', { activity : activity } )
+        res.render('activities/show', { activity : activity, trip : trip } )
      })
 })
 
@@ -60,16 +59,16 @@ router.put('/activities/:id', (req, res) => {
 
 })
 
-router.delete('/activities/:id', (req, res) => {
-    const tripId = req.body.trip_id
-    const activityId = req.body.activity_id
+router.delete('/trips/:tripId/activities/:activityId', (req, res) => {
+    const trip = req.params.tripId
+    const activityId = req.params.activityId
 
     let sql = `DELETE activities WHERE id = $1`
 
     db.query(sql, [activityId], (err, result) => {
         if(err) console.log(err);
 
-        res.redirect(`/trips/${tripId}`)
+        res.redirect(`/trips/${trip}`)
     })
 })
 

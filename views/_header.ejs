@@ -1,14 +1,65 @@
-<h1><a href="/">trip planner</a></h1>
+<div class="navbar">
+    <div class="logo"><a href="#">TRIP PLANNER LOGO</a></div>
+    <ul class="links">
+        <li>
+            <a href="/add">add trip</a>
+        </li>
+    
+        <li>
+            <a href="/trips">trips</a>
+        </li>
+    
+        <li>
+            <a href="#">bucketlist</a>
+        </li>
+    
+        <li>
+            <% if (isLoggedIn) { %> 
+                <p>logged in as <%= currentUser.email %></p>
+                <form action="/logout?_method=delete" method="post">
+                    <button>logout</button>
+                </form>
+            <% } else { %>
+                <a href="/login">login</a>
+            <% } %>
+        </li>
+    </ul>
+    <a href="#" class="create-account-btn">Create account</a>
+    <div class="hamburger_btn">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+</div>
+<div class="dropdown_menu">
+    <li>
+        <a href="/add">add trip</a>
+    </li>
 
-<a href="/add">add trip</a>
-<a href="/trips">trips</a>
-<a href="#">bucketlist</a>
+    <li>
+        <a href="/trips">trips</a>
+    </li>
 
-<% if (isLoggedIn) { %> 
-    <p>logged in as <%= currentUser.email %></p>
-    <form action="/logout?_method=delete" method="post">
-        <button>logout</button>
-    </form>
-<% } else { %>
-    <a href="/login">login</a>
-<% } %>
+    <li>
+        <a href="#">bucketlist</a>
+    </li>
+
+    <li>
+        <% if (isLoggedIn) { %> 
+            <p>logged in as <%= currentUser.email %></p>
+            <form action="/logout?_method=delete" method="post">
+                <button>logout</button>
+            </form>
+        <% } else { %>
+            <a href="/login">login</a>
+        <% } %>
+    </li>
+    <li>
+        <a href="#" class="create-account-btn">Create account</a>
+
+    </li>
+</div>
+
+
+
+
+
+

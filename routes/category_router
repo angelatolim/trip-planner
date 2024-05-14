@@ -1,0 +1,26 @@
+const express = require('express')
+const db = require('../db')
+const router = express.Router()
+
+router.post('/categories', (req, res) => {
+    const type = req.body.type
+    const tripId = req.body.trip_id
+    const activityId = req.body.activity_id
+
+    let sql = `
+    INSERT INTO 
+        categories 
+        type 
+    VALUES 
+        $1
+    `
+
+    db.query(sql, [type], (err, result) => {
+        if(err) console.log(err);
+
+        res.redirect(`/trips/${tripId}/activities/${activityId}`)
+    })
+
+})
+
+module.exports = router
