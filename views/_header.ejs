@@ -1,0 +1,14 @@
+<h1><a href="/">trip planner</a></h1>
+
+<a href="/add">add trip</a>
+<a href="/trips">trips</a>
+<a href="#">bucketlist</a>
+
+<% if (isLoggedIn) { %> 
+    <p>logged in as <%= currentUser.email %></p>
+    <form action="/logout?_method=delete" method="post">
+        <button>logout</button>
+    </form>
+<% } else { %>
+    <a href="/login">login</a>
+<% } %>

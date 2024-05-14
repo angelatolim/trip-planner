@@ -1,0 +1,25 @@
+<h2>trip details</h2>
+<h3><%= trip.title %></h3>
+
+<h4><%= trip.origin %> to <%= trip.destination %></h4>
+<h5>Status: <%= trip.status %></h5>
+
+<a href="/trips/<%= trip.id %>/edit">edit</a>
+
+<form action="/trips/<%= trip.id %>?_method=delete" method="post">
+
+    <button>delete</button>
+
+</form>
+
+<h4>activities</h4>
+<% for (let activity of activities) { %>
+    <p><a href="/trips/<%= trip.id %>/activities/<%= activity.id %>"><%= activity.name %></a></p>
+
+<% } %>
+
+<form action="/activities" method="post">
+    <input type="text" name="name">
+    <input type="hidden" name="trip_id" value="<%= trip.id %>">
+    <button>add activity</button>
+</form>
