@@ -2,6 +2,20 @@ const express = require('express')
 const db = require('../db')
 const router = express.Router()
 
+router.get('/trips', (req, res) => {
+    const sql = `
+    SELECT * FROM trips where user_id = $1
+    `
+
+    db.query(sql, [req.session.userId], (err, result) => {
+        if(err) console.log(err);
+
+        const trips = result.rows
+        console.log(trips);
+        res.render('trips', { trips : trips })
+    })
+})
+
 router.get('/trips/:id', (req, res) => {
     const sql = `
         SELECT * FROM trips where id = $1
@@ -47,16 +61,17 @@ router.post('/trips', (req, res) => {
     const destination = req.body.destination
     const imageUrl = req.body.image_url
     const status = req.body.status
+    const userId = req.session.userId
 
     const sql = `
     INSERT INTO 
         trips
-        (title, origin, destination, image_url, status)
+        (title, origin, destination, image_url, status, user_id)
     VALUES
-        ($1, $2, $3, $4, $5);
+        ($1, $2, $3, $4, $5, $6);
     `
 
-    db.query(sql, [title, origin, destination, imageUrl, status], (err, result) => {
+    db.query(sql, [title, origin, destination, imageUrl, status, userId], (err, result) => {
         if (err) console.log(err);
 
         res.redirect('/')

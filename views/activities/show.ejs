@@ -5,11 +5,16 @@
 
 </form>
 
-<form action="/categories" method="post">
-    <label for="categories">categories</label>
-    <input type="text">
+<form action="/trips/<%= tripId %>/activities/<%= activity.id %>/categories" method="post">
+    <label for="categories">Category:</label>
+    <input type="text" name="type">
     <input type="hidden" name="trip_id" value="<%= tripId %>">
     <input type="hidden" name="activity_id" value="<%= activity.id %>">
     <button>add category</button>
 
 </form>
+
+<% for (let category of categories) { %>
+    <p><%= category.type %></p>
+<% } %>
+

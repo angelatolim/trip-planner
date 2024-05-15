@@ -26,27 +26,50 @@ router.get('/trips/:tripId/activities/:activityId', (req, res) => {
     const tripId = req.params.tripId
     const activityId = req.params.activityId
 
-     const sql = `
-     SELECT 
+    const sql = `
+    SELECT 
         trips.title AS trip_title, trips.id AS trip_id, activities.name AS activity_name, activities.id
-     FROM 
+    FROM 
         trips 
-     INNER JOIN 
+    INNER JOIN 
         activities 
-     ON 
+    ON 
         activities.trip_id = trips.id
-     WHERE 
+    WHERE 
         trips.id = $1
     AND 
         activities.id = $2
     ;`
+
+    // something wrong with this sql
+    const categorySql = `
+    SELECT 
+        type
+    FROM 
+        categories 
+    INNER JOIN
+        activities_categories
+    ON
+        activities_categories.category_id = categories.id
+    WHERE 
+        activities_categories.activity_id = $1
+    `
 
     db.query(sql, [tripId, activityId], (err, result) => {
         if(err) console.log(err);
 
         const activity = result.rows[0]
         console.log(activity);
-        res.render('activities/show', { activity : activity, tripId : tripId } )
+
+        db.query(categorySql, [activityId], (err, result) => {
+            if(err) console.log(err);
+
+            console.log(result.rows);
+            const categories = result.rows
+
+            res.render('activities/show', { activity : activity, tripId : tripId, categories: categories } )
+
+        })
     })
 })
 

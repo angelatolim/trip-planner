@@ -64,7 +64,7 @@ DROP COLUMN trip_id;
 ALTER TABLE trips
 ADD COLUMN image_url TEXT;
 
--- create comment table
+-- create comment table HAVENT DONE THIS
 CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
     content TEXT,
@@ -77,3 +77,13 @@ CREATE TABLE comments (
 -- add trip id to activities table
 ALTER TABLE activities
 ADD COLUMN trip_id INT;
+
+
+-- mapper table
+CREATE TABLE activities_categories (
+    id SERIAL PRIMARY KEY,
+    activity_id INT,
+    category_id INT,
+    FOREIGN KEY (activity_id) REFERENCES activities (id),
+    FOREIGN KEY (category_id) REFERENCES categories (id)
+);

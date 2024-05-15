@@ -2,6 +2,25 @@
 
 <div class="my-trips">
 
-    <p>blankspace</p>
+    <% for (let trip of trips) { %>
+        <div class="ui-card">
+            <h3>
+                <div class="img-container">
+                    <img src="<%= trip.image_url %>" alt="" class="card-img">
+                </div> 
+                <div class="content-wrapper">
+                    <h4>
+                        <a href="/trips/<%= trip.id %>">
+                            <%= trip.title %>
+                        </a>
+                    </h4>
 
+                    <p><%= trip.origin %> to <%= trip.destination %></p>
+                </div>
+
+            </h3>
+
+        </div>
+
+    <% } %>
 </div>

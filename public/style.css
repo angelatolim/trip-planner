@@ -6,6 +6,13 @@ main {
     padding: 40px;
 }
 
+input::placeholder {
+    color: grey;
+    font-size: 14px;
+    padding: 0.5rem;
+}
+
+
 a:hover {
     color:aqua
 }
@@ -48,6 +55,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     gap: 0.6rem;
+    align-items: center;
 }
 
 .navbar .hamburger_btn {
@@ -56,14 +64,15 @@ a:hover {
     display: none;
 }
 
-.action-btn {
+button, .action-btn {
     background-color: #0ac7c9;
     border-radius: 20px;
     color: white;
     padding: 0.5rem 1.2rem;
     border: none;
     cursor:pointer;
-    font: 0.8rem;
+    font: 20px;
+    height: 44px;
 }
 
 .dropdown_menu {
@@ -103,7 +112,7 @@ a:hover {
 
 .search-box {
     /* background-color: rgb(255, 255, 255, 0.2); */
-    width: 50%;
+    width: 70%;
     height: 40%;
     border-radius: 20px;
     position: absolute;
@@ -121,22 +130,28 @@ a:hover {
     color: white;
 }
 
+.search-input {
+    align-items: center;
+    justify-content: center;
+}
+
 .search-form input {
     border: 1px solid lightgray;
     border-radius: 4px;
-    height: 36px;
-    width: 200px;
+    height: 44px;
+    width: 400px;
     margin: 20px;
     background-color: rgb(255, 255, 255, 0.8);
 }
 
-.search-form button {
-    height: 36px;
-    width: 80px;
-}
+
 
 h1, h2 {
     padding: 20px 0px;
+}
+
+.search-display {
+    font-size: 4rem;
 }
 
 p {
