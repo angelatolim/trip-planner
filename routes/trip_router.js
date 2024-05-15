@@ -22,12 +22,13 @@ router.get('/trips/:id', (req, res) => {
         const trip = result.rows[0]
 
         db.query(activitiesSql, [req.params.id], (err, result) => {
+            if(err) console.log(err);
 
             const activities = result.rows
-            console.log(activities);
+            // console.log(activities);
 
             // comment db
-
+            console.log('trip stuff', trip);
             res.render('show', { trip : trip, activities : activities })
         })
 
@@ -44,17 +45,18 @@ router.post('/trips', (req, res) => {
     const title = req.body.title
     const origin = req.body.origin
     const destination = req.body.destination
+    const imageUrl = req.body.image_url
     const status = req.body.status
 
     const sql = `
     INSERT INTO 
         trips
-        (title, origin, destination, status)
+        (title, origin, destination, image_url, status)
     VALUES
-        ($1, $2, $3, $4);
+        ($1, $2, $3, $4, $5);
     `
 
-    db.query(sql, [title, origin, destination, status], (err, result) => {
+    db.query(sql, [title, origin, destination, imageUrl, status], (err, result) => {
         if (err) console.log(err);
 
         res.redirect('/')
@@ -94,6 +96,7 @@ router.put('/trips/:id', (req, res) => {
     const title = req.body.title
     const origin = req.body.origin
     const destination = req.body.destination
+    const imageUrl = req.body.image_url
     const status = req.body.status
     const id = req.params.id
 
@@ -104,12 +107,13 @@ router.put('/trips/:id', (req, res) => {
         title = $1,
         origin = $2,
         destination = $3,
-        status = $4 
+        image_url = $4,
+        status = $5
     WHERE
-        id = $5;
+        id = $6;
     `
 
-    db.query(sql, [title, origin, destination, status, id], (err, result) => {
+    db.query(sql, [title, origin, destination, imageUrl, status, id], (err, result) => {
         if (err) console.log(err);
         
         res.redirect(`/trips/${id}`)

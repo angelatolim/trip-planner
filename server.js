@@ -28,12 +28,14 @@ const sessionRouter = require('./routes/session_router')
 const tripRouter = require('./routes/trip_router')
 const activityRouter = require('./routes/activity_router')
 const categoryRouter = require('./routes/category_router')
+const userRouter = require('./routes/user_router')
 
 
 // use routes and middlewares
 app.use(setCurrentUser)
 app.use(homeRouter)
 app.use(sessionRouter)
+app.use(userRouter)
 app.use(ensureLoggedIn)
 app.use(tripRouter)
 app.use(activityRouter)

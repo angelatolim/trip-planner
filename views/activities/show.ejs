@@ -1,7 +1,6 @@
 
-<h2><%= activity.name %></h2>
-
-<form action="/trips/<%= trip.id %>/activities/<%= activity.id %>?_method=delete" method="post">
+<h2><%= activity.activity_name %></h2>
+<form action="/trips/<%= tripId %>/activities/<%= activity.id %>?_method=delete" method="post">
     <button>delete</button>
 
 </form>
@@ -9,7 +8,7 @@
 <form action="/categories" method="post">
     <label for="categories">categories</label>
     <input type="text">
-    <input type="hidden" name="trip_id" value="<%= trip.id %>">
+    <input type="hidden" name="trip_id" value="<%= tripId %>">
     <input type="hidden" name="activity_id" value="<%= activity.id %>">
     <button>add category</button>
 

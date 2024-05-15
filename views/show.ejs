@@ -4,6 +4,8 @@
 <h4><%= trip.origin %> to <%= trip.destination %></h4>
 <h5>Status: <%= trip.status %></h5>
 
+<img src="<%= trip.image_url %>" alt="">
+
 <a href="/trips/<%= trip.id %>/edit">edit</a>
 
 <form action="/trips/<%= trip.id %>?_method=delete" method="post">

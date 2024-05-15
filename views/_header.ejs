@@ -1,34 +1,48 @@
 <div class="navbar">
-    <div class="logo"><a href="#">TRIP PLANNER LOGO</a></div>
+    <div class="logo">
+        <img src="/images/DALL·E 2024-05-15 14.22.37 - Design a cute and friendly logo for a travel planner and social platform. The logo should be charming and approachable, featuring a stylized map pin w.webp" alt="" class="logo-img">
+        <a href="/">TRIP PLANNER</a>
+    </div>
     <ul class="links">
         <li>
-            <a href="/add">add trip</a>
+            <a href="/add" class="action-btn">Add trip</a>
         </li>
     
         <li>
-            <a href="/trips">trips</a>
+            <a href="/trips">Trips</a>
         </li>
     
         <li>
-            <a href="#">bucketlist</a>
+            <a href="#">Bucketlist</a>
         </li>
     
         <li>
             <% if (isLoggedIn) { %> 
-                <p>logged in as <%= currentUser.email %></p>
-                <form action="/logout?_method=delete" method="post">
-                    <button>logout</button>
-                </form>
+                <div class="profile-settings">
+                    <p>Welcome, <%= currentUser.name %></p>
+                    <div class="dropdown-icon">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <form action="/logout?_method=delete" method="post">
+                        <button>logout</button>
+                    </form>
+                </div>
             <% } else { %>
-                <a href="/login">login</a>
+                <a href="/login">login/create account</a>
             <% } %>
         </li>
     </ul>
-    <a href="#" class="create-account-btn">Create account</a>
+    <!-- <a href="#" class="create-account-btn">Create account</a> -->
     <div class="hamburger_btn">
         <i class="fa-solid fa-bars"></i>
     </div>
 </div>
+
+<div class="profile-settings-dropdown-menu">
+
+</div>
+
+
 <div class="dropdown_menu">
     <li>
         <a href="/add">add trip</a>

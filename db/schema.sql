@@ -73,3 +73,7 @@ CREATE TABLE comments (
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE, 
     FOREIGN KEY (dish_id) REFERENCES dishes (id) ON DELETE CASCADE
 );
+
+-- add trip id to activities table
+ALTER TABLE activities
+ADD COLUMN trip_id INT;

@@ -1,3 +1,15 @@
+
+<div class="banner-container">
+    <img src="/images/pexels-vincent-gerbouin-445991-1174732.jpg" alt="" class="banner-img">
+    <div class="search-box">
+        <form action="#" class="search-form">
+            <h1>Search destinations</h1>
+            <input type="text">
+            <button>Search</button>
+        </form>
+    </div>
+</div>
+
 <h2>Explore</h2>
 
 <div class="all-trips">
@@ -5,10 +17,22 @@
     <% for (let trip of trips) { %>
         <div class="ui-card">
             <h3>
-                <a href="/trips/<%= trip.id %>">
-                    <%= trip.title %>
+                <div class="img-container">
+                    <img src="<%= trip.image_url %>" alt="" class="card-img">
+                    <div class="save-icon">
+                        <i class="fa-regular fa-bookmark"></i>
+                    </div>
+                </div> 
+                <div class="content-wrapper">
+                    <h4>
+                        <a href="/trips/<%= trip.id %>">
+                            <%= trip.title %>
+                        </a>
+                    </h4>
 
-                </a>
+                    <p><%= trip.origin %> to <%= trip.destination %></p>
+                </div>
+
             </h3>
 
         </div>

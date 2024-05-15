@@ -23,18 +23,31 @@ router.post('/activities', (req, res) => {
 })
 
 router.get('/trips/:tripId/activities/:activityId', (req, res) => {
-    const trip = req.params.tripId
+    const tripId = req.params.tripId
     const activityId = req.params.activityId
 
-     const sql = `SELECT * FROM activities WHERE id = $1;`
+     const sql = `
+     SELECT 
+        trips.title AS trip_title, trips.id AS trip_id, activities.name AS activity_name, activities.id
+     FROM 
+        trips 
+     INNER JOIN 
+        activities 
+     ON 
+        activities.trip_id = trips.id
+     WHERE 
+        trips.id = $1
+    AND 
+        activities.id = $2
+    ;`
 
-     db.query(sql, [activityId], (err, result) => {
+    db.query(sql, [tripId, activityId], (err, result) => {
         if(err) console.log(err);
 
         const activity = result.rows[0]
-
-        res.render('activities/show', { activity : activity, trip : trip } )
-     })
+        console.log(activity);
+        res.render('activities/show', { activity : activity, tripId : tripId } )
+    })
 })
 
 router.put('/activities/:id', (req, res) => {
@@ -63,7 +76,7 @@ router.delete('/trips/:tripId/activities/:activityId', (req, res) => {
     const trip = req.params.tripId
     const activityId = req.params.activityId
 
-    let sql = `DELETE activities WHERE id = $1`
+    let sql = `DELETE FROM activities WHERE id = $1`
 
     db.query(sql, [activityId], (err, result) => {
         if(err) console.log(err);
