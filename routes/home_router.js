@@ -4,13 +4,22 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
 
-    let sql = `SELECT * FROM trips;`
+    let tripsSql = `SELECT * FROM trips;`
 
-    db.query(sql, (err, result) => {
+    db.query(tripsSql, (err, result) => {
         if (err) console.log(err);
-        
+
         const trips = result.rows
-        res.render('home', { trips : trips })
+        
+        let usersSql = `SELECT * FROM users;`
+        db.query(usersSql, (err, result) => {
+            if(err) console.log(err);
+
+            const users = result.rows
+
+            res.render('home', { trips : trips, users : users })
+        })
+        
     })
 
 })

@@ -1,9 +1,9 @@
 
 <div class="banner-container">
-    <img src="/images/pexels-vincent-gerbouin-445991-1174732.jpg" alt="" class="banner-img">
+    <img src="/images/canyon.jpg" alt="" class="banner-img">
     <div class="search-box">
         <form action="#" class="search-form">
-            <h1 class="search-display">Find your next destination</h1>
+            <h1 class="search-display">Find your next itinerary</h1>
             <div class="search-input">
 
                 <input type="text" placeholder="e.g. 10 days in Japan">
@@ -28,13 +28,21 @@
                     </div>
                 </div> 
                 <div class="content-wrapper">
-                    <h4>
-                        <a href="/trips/<%= trip.id %>">
-                            <%= trip.title %>
-                        </a>
-                    </h4>
-
-                    <p><%= trip.origin %> to <%= trip.destination %></p>
+                    <div class="trip-summary">
+                        <h4>
+                            <a href="/trips/<%= trip.id %>">
+                                <%= trip.title %>
+                            </a>
+                        </h4>
+                        <p><%= trip.origin %> to <%= trip.destination %></p>
+                    </div>
+                    <div class="profile-img">
+                        <% for (let user of users) { %>
+                            <% if (user.id === trip.user_id) { %>
+                                <img src="<%= user.profile_img %>" alt="">
+                            <% } %>
+                        <% } %>
+                    </div>
                 </div>
 
             </h3>

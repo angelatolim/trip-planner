@@ -1,4 +1,4 @@
-<h2>my trips</h2>
+<h2>My trips</h2>
 
 <div class="my-trips">
 
@@ -9,13 +9,14 @@
                     <img src="<%= trip.image_url %>" alt="" class="card-img">
                 </div> 
                 <div class="content-wrapper">
-                    <h4>
-                        <a href="/trips/<%= trip.id %>">
-                            <%= trip.title %>
-                        </a>
-                    </h4>
-
-                    <p><%= trip.origin %> to <%= trip.destination %></p>
+                    <div class="trip-summary">
+                        <h4>
+                            <a href="/trips/<%= trip.id %>">
+                                <%= trip.title %>
+                            </a>
+                        </h4>
+                        <p><%= trip.origin %> to <%= trip.destination %></p>
+                    </div>
                 </div>
 
             </h3>

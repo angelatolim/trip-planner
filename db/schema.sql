@@ -45,8 +45,6 @@ CREATE TABLE locations (
     address TEXT
 );
 
-
-
 -- insert into table
 INSERT INTO trips (title, origin, destination, status) 
 VALUES ('NZ', 'Sydney', 'Christchurch', 'Past');
@@ -87,3 +85,27 @@ CREATE TABLE activities_categories (
     FOREIGN KEY (activity_id) REFERENCES activities (id),
     FOREIGN KEY (category_id) REFERENCES categories (id)
 );
+
+
+UPDATE users
+SET name = 'test'
+WHERE id = 1;
+
+ALTER TABLE users
+ADD COLUMN profile_img TEXT;
+
+UPDATE users
+SET profile_img = '/images/IMG_20190912_144246_1.jpg'
+WHERE id = 1;
+
+UPDATE users
+SET profile_img = '/images/angeonaplanelogo_circle.png'
+WHERE id = 2;
+
+UPDATE users
+SET profile_img = '/images/Headshot_Circle.png'
+WHERE id = 3;
+
+UPDATE users
+SET profile_img = '/images/IMG_2011.HEIC'
+WHERE id = 4;
